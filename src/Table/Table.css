@@ -1,0 +1,22 @@
+.selectBlock {
+    max-width: 90%;
+    min-width: 35.4%;
+    margin-left: 0.5rem;
+}
+
+.selectBlock option {
+    max-width: 80%;
+}
+
+.table {
+    text-align: center;
+}
+
+.table td {
+    vertical-align: middle;
+}
+#table-scroll {
+    height:350px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
