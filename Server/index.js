@@ -58,7 +58,7 @@ async function start() {
             /*request.find()
             .then((request) => res.json(request));*/
 
-            /*if (request.find({ request_user_id: requestUserId, request_from_id: requestFromId })) {
+            /*if (request.find({ request_user_id: requestUserId, request_from_id: requestFromId })) {*/
                 request.create({
                     id: requestId,
                     request_user_id: requestUserId, 
@@ -68,7 +68,7 @@ async function start() {
                 .then((user) => res.json(user))
                 .catch((err) => res.send(err)); 
                 console.log('create one');
-            }
+            /*}
             else {
                 request.findOneAndUpdate({ request_user_id: requestUserId, request_from_id: requestFromId}, {
                     $inc: { count: 1 }

@@ -3,7 +3,7 @@ import Table from './Table/Table'
 import UserManagment from './Table/UserManagment'
 import AddRequest from './Table/AddRequest'
 import Vacation from './Table/Vacation'
-//import socket from './socket'
+import socket from './socket'
 import axios from 'axios'
 
 class App extends Component {
@@ -19,14 +19,14 @@ class App extends Component {
         } else {
             newId = this.state.users.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id + 1;
         }
-        //axios.post('/addUser', { newId, userName, vacationStatus: false });
+        axios.post('/addUser', { newId, userName, vacationStatus: false });
         this.setState({
             users: [...this.state.users, {id: newId, name: userName, vacation: false}]
         })
     }
 
     removeUser = (userName) => {
-        //axios.post('/removeUser', { userName });
+        axios.post('/removeUser', { userName });
         if (this.state.users.length !== 0) {
             const newList = this.state.users.filter(user => !(user.userName === userName));
             this.setState({
@@ -42,7 +42,7 @@ class App extends Component {
         } else {
             requestId = this.state.users.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id + 1;
         }
-        //axios.post('addRequest', { requestId, requestFromId, requestUserId });
+        axios.post('addRequest', { requestId, requestFromId, requestUserId });
         const newUsers = this.state.users.map(user => { 
             if (user.id === requestUserId) {
                 let newUser = user;
