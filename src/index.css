@@ -12,4 +12,16 @@ code {
     monospace;
 }
 
+header {
+  background-color: black;
+}
+.Link {
+  text-decoration: none;
+  color: white;
+  margin-left: 1rem; 
+}
+.Link:hover {
+  color:rgb(223, 161, 27);
+}
+
 
