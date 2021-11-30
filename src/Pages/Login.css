@@ -1,0 +1,21 @@
+body {
+    background: url(../Pictures/plank.jpg) no-repeat;
+    height: 100%;
+    max-height: 1080px;
+    overflow: hidden;
+}
+.login {
+    padding-top: 20%;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+.input {
+    position: relative;
+}
+.password {
+    margin-top: 0.2rem;
+}
+.button {
+    margin-top: 0.2rem;
+}
