@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  server:
+    build: ./Server/
+    volumes:
+      - .:/AutoMerge-releaseV2/Server/
+    ports:
+      - 5000:5000
+    command: npm start
+  client:
+    build:
+      context: .
+    volumes:
+      - .:/AutoMerge-releaseV2
+    ports:
+      - 3000:3000
+    container_name: client
+    command: npm start
+  mongodb:
+    image : mongo
+    container_name: mongodb
+    environment:
+    - MONGODB_USERNAME:Amin
+    - MONGODB_PASSWORD:micran
+    - MONGODB_DATABASE:cloud
+    volumes:
+    - /home/barry/mongodb/database:/data/db
+    ports:
+    - 27017:27017
+    
+    

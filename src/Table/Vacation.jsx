@@ -5,9 +5,9 @@ const styles = {
 }
 
 const tableScroll = {
-    height: '350px',
-    overflowY: 'scroll',
-    overflowX: 'hidden',
+    height: '340px',
+    overflowY: 'auto',
+    overflowX: 'auto',
     marginTop: '2rem'
 }
 
