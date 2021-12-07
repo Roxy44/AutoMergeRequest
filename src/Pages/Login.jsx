@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router';
 import './Login.css'
 //import socket from '../socket'
 
+
 export default function Login({checkUserRole}) {
     const navigate = useNavigate();
 
-    const [login, setLogin] = useState('')
-    const [password, setPassword] = useState('')
+    const [login, setLogin] = useState('');
+    const [password, setPassword] = useState('');
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -31,15 +32,17 @@ export default function Login({checkUserRole}) {
     }
 
     return (
-        <form className="login" onSubmit={handleSubmit}>
+        <form className="loginMenu" onSubmit={handleSubmit}>
             <div className="input">
-                <input type="text" placeholder="Введите логин" value={login} required onChange={handleChange} />
+                <div className="login">
+                    <input type="text" placeholder="Введите логин" value={login} required onChange={handleChange} />
+                </div>
                 <div className="password">
                     <input type="password" className="password" placeholder="Введите пароль" value={password} required onChange={handleChange} />
                 </div>
                 <div className="button">
                     <button type="submit" class="btn btn-warning">Войти</button>
                 </div>
-            </div>         
+            </div>        
         </form>
 )}

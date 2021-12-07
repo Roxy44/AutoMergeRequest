@@ -4,22 +4,28 @@ import UserManagment from '../Table/UserManagment'
 import AddUserToCommand from './Component/AddUserToCommand'
 import AddRequest from '../Table/AddRequest'
 import Vacation from '../Table/Vacation'
-import socket from '../socket'
-import axios from 'axios'
-
+//import socket from '../socket'
+//import axios from 'axios'
+import AddCommand from './Component/AddCommand'
 
 class Request extends Component {
     constructor(props) {
         super(props);
         this.state = {users: [
-            {id: 0, name: "vanya", vacation: false},
-            {id: 1, name: "petya", vacation: false},
-            {id: 2, name: "illya", vacation: true}
-        ], requests: []};
-    }
+            {id: 0, name: "vanya", vacation: false, teams: []},
+            {id: 1, name: "petya", vacation: false, teams: []},
+            {id: 2, name: "illya", vacation: false, teams: []}
+        ], 
+        requests: [],
+        teams: [
+            {id: 0, name: "zxc"},
+            {id: 1, name: "scamers"}
+        ],
+        table: ''
+        };
+    };
 
     addUser = (userName) => {
-        console.log("props: ", this.props.userRole);
         let newId;
         if (this.state.users.length === 0) {
             newId = 0;
@@ -27,12 +33,12 @@ class Request extends Component {
             newId = this.state.users.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id + 1;
         }
 
-        axios.post('/addUser', { newId, userName, vacationStatus: false });
+        //axios.post('/addUser', { newId, userName, vacationStatus: false });
 
         this.setState({
-            users: [...this.state.users, {id: newId, name: userName, vacation: false}]
+            users: [...this.state.users, {id: newId, name: userName, vacation: false, teams: []}]
         });
-    }
+    };
 
     removeUser = (userName) => {
         if (this.state.users.length !== 0) {
@@ -42,8 +48,8 @@ class Request extends Component {
             });
         } 
 
-        axios.post('/removeUser', { userName });
-    }
+        //axios.post('/removeUser', { userName });
+    };
 
     addRequest = (requestFromId, requestUserId) => {
         let requestId;
@@ -69,12 +75,37 @@ class Request extends Component {
             return user;
         })
 
-        axios.post('addRequest', { requestId, requestFromId, requestUserId });
+        //axios.post('addRequest', { requestId, requestFromId, requestUserId });
 
         this.setState({
             users: newUsers
         })
-    }
+    };
+
+    addTeam = (teamName) => {
+        let newId;
+        if (this.state.teams.length === 0) {
+            newId = 0;
+        } else {
+            newId = this.state.teams.reduce((acc, curr) => acc.id > curr.id ? acc : curr).id + 1;
+        }
+        this.setState({
+            teams: [...this.state.teams, {id: newId, name: teamName}]
+        });    
+    };
+
+    addToTeam = (userId, teamId) => {
+        const teamUser = this.state.users.map(user => {
+            let userInTeam = user;
+            if (user.id === Number(userId)) {
+                userInTeam.teams = [...user.teams.filter(team => (team !== Number(teamId))), Number(teamId)];
+            }
+            return userInTeam;
+        })
+        this.setState({
+            users: teamUser
+        });
+    };
 
     setVacation = (id) => {
         const newUsers = this.state.users.map(user => {
@@ -83,11 +114,15 @@ class Request extends Component {
                 newUser.vacation = !user.vacation;
             } 
             return newUser;
-        })
+        });
         this.setState({
             users: newUsers    
-        })
-    }
+        });
+    };
+
+    selectedTable =  async (tableName) => {
+        await this.setState({ table: tableName });
+    };
 
     render() {
         return (  
@@ -96,25 +131,26 @@ class Request extends Component {
                 {
                 this.props.userRole === 0 ? 
                     <div>
-                        <AddUserToCommand users={this.state.users}/>
+                        <AddCommand addTeam={this.addTeam}/>
+                        <AddUserToCommand addToTeam={this.addToTeam} users={this.state.users} teams={this.state.teams}/>
                         <UserManagment addUser={this.addUser} removeUser={this.removeUser}/>
-                        <Table users={this.state.users}/>
+                        <Table users={this.state.users} teams={this.state.teams} selectedTable={this.selectedTable}/>
                         <Vacation setVacation={this.setVacation} users={this.state.users}/> 
                     </div>
                     : 
                     this.props.userRole === 1 ?
                         <div>
-                            <AddUserToCommand />
-                            <AddRequest addRequest={this.addRequest} users={this.state.users}/>
-                            <Table users={this.state.users}/>
+                            <AddUserToCommand addToTeam={this.addToTeam} users={this.state.users} teams={this.state.teams}/>
+                            <AddRequest addRequest={this.addRequest} users={this.state.users} table={this.state.table}/>
+                            <Table users={this.state.users} teams={this.state.teams} selectedTable={this.selectedTable}/>
                         </div>
                         :
                         this.state.users.length === 0 ?
                             <div style={{color: 'black'}}>!Пользователи еще не добавлены в систему!</div>
                             : 
                             <div>
-                                <AddRequest addRequest={this.addRequest} users={this.state.users}/>
-                                <Table users={this.state.users}/>
+                                <AddRequest addRequest={this.addRequest} users={this.state.users} table={this.state.table}/>
+                                <Table users={this.state.users} teams={this.state.teams} selectedTable={this.selectedTable}/>
                             </div>
                 }
             </div>
