@@ -23,9 +23,9 @@ export default function UserManagment({addUser, removeUser}) {
     }
 
     return (  
-        <form style={ { display: 'flex', marginBottom: '0.5rem', marginTop: '1rem', padding: '0'}} onSubmit={handleSubmit}>
-            <input style={{minWidth: '20%'}} type="text" value={name} maxLength="30" required onChange={handleChange} title="Поле для ввода имя нового работника"/>
-            <button style={ { marginLeft: '0.5rem' } } type="submit" title="Данная кнопка добавляет нового работника с именем, написанным в текстовом поле слева">Добавить работника</button>
-            <button style={ { marginLeft: '0.5rem' } } type="button" onClick={handleClick} title="Данная кнопка увольняет работника с именем, написанным в текстовом поле слева">Уволить работника</button>
+        <form style={ { display: 'flex', marginBottom: '0.5rem', padding: '0'}} onSubmit={handleSubmit}>
+            <input style={{minWidth: '20%'}} type="text" value={name} maxLength="30" placeholder="Введите имя пользователя" required onChange={handleChange}/>
+            <button style={ { marginLeft: '0.5rem' } } type="submit">Добавить пользователя</button>
+            <button style={ { marginLeft: '0.5rem' } } type="button" onClick={handleClick}>Удалить пользователя</button>
         </form>
 )}

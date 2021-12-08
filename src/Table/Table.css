@@ -1,7 +1,7 @@
 .selectBlock {
-    max-width: 90%;
-    min-width: 35.4%;
-    margin-left: 0.5rem;
+    max-width: 80%;
+    min-width: 31.75%;
+    margin-right: 0.5rem;
 }
 
 .selectBlock option {
@@ -10,6 +10,7 @@
 
 .table {
     text-align: center;
+    border: 2px solid white !important;
 }
 
 .table td {
@@ -17,6 +18,21 @@
 }
 #table-scroll {
     height:350px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+#vacation-scroll {
+    height:127px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid white !important;
+    background-color: black;
+}
+
+.vacation {
+    margin-left: 70%;
+    margin-top: -8.5%;
+    min-width: 300px;
+    max-width: 400px;
+    height: 165px;
 }
