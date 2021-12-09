@@ -38,14 +38,14 @@ export default function AddUserToCommand(props) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <select style={{ minWidth: "20%", marginRight: "0.5rem", marginBottom: "0.5rem" }} value={name} onChange={handleChangeUser}>
+        <form className="addUserToTeam" onSubmit={handleSubmit}>
+            <select value={name} onChange={handleChangeUser}>
                 <option key={`user-null`} value={-1}>Не выбрано</option>
                 {props.users.map(user => (
                     <option key={`user-${user.id}`} value={user.id}>{user.name}</option>
                 ))}
             </select>
-            <select style={{ minWidth: "15.35%", marginRight: "0.5rem" }} value={team} onChange={handleChangeTeam}>
+            <select value={team} onChange={handleChangeTeam}>
                 <option key={`command-null`} value={-1}>Не выбрано</option>
                 {props.teams.map(team => (
                     <option key={`team-${team.id}`} value={team.id}>{team.name}</option>
@@ -53,7 +53,7 @@ export default function AddUserToCommand(props) {
             </select>
             <button type="submit" onClick={handleClick}>Добавить</button>
             <Modal active={modalActive} setActive={setModalActive}>
-                    <p>Пользователь <b>{content.userName}</b> был добавлен в команду <b>{content.userTeam}</b>!</p>
+                <p>Пользователь <b>{content.userName}</b> был добавлен в команду <b>{content.userTeam}</b>!</p>
             </Modal>
         </form>
     )

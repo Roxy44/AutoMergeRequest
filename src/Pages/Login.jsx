@@ -32,17 +32,23 @@ export default function Login({checkUserRole}) {
     }
 
     return (
-        <form className="loginMenu" onSubmit={handleSubmit}>
-            <div className="input">
-                <div className="login">
-                    <input type="text" placeholder="Введите логин" value={login} required onChange={handleChange} />
-                </div>
-                <div className="password">
-                    <input type="password" className="password" placeholder="Введите пароль" value={password} required onChange={handleChange} />
-                </div>
-                <div className="button">
-                    <button type="submit" className="btn btn-warning">Войти</button>
+        <div className="container">
+            <div className="row">
+                <div className="col-12">
+                    <form className="loginComponent" onSubmit={handleSubmit}>
+                        <div className="loginMenu">
+                            <div className="login">
+                                <input type="text" placeholder="Введите логин" value={login} required onChange={handleChange} />
+                            </div>
+                            <div className="password">
+                                <input type="password" className="password" placeholder="Введите пароль" value={password} required onChange={handleChange} />
+                            </div>
+                            <div className="button">
+                                <button type="submit" className="btn btn-warning">Войти</button>
+                            </div>
+                        </div>        
+                    </form>
                 </div>
             </div>        
-        </form>
+        </div>
 )}

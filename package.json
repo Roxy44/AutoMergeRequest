@@ -18,6 +18,8 @@
     "react-router-dom": "^6.0.2",
     "react-scripts": "^0.9.5",
     "socket.io-client": "^4.4.0",
+    "uglify-es": "github:mishoo/UglifyJS2#harmony",
+    "uglify-js": "github:mishoo/UglifyJS2#harmony",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

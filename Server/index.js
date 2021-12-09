@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const config = require("config");
-const ldapjs = require('ldapjs')
+const ldapjs = require('ldapjs');
 
 const { User } = require("./Schema/UserShema");
 const { Request } = require("./Schema/RequestSchema");
@@ -10,6 +10,18 @@ const { Request } = require("./Schema/RequestSchema");
 const app = express();
 const server = require('http').Server(app);
 const PORT = config.get('serverPort');
+
+/*const { Gitlab, Projects } = require('@gitbeaker/node');
+const { ProjectsBundle } = require('gitlab');
+
+const api = new Gitlab({
+    host : 'https://gitlab.com',
+    token: '3Asw-ZvG25ekVAbzS8F6'
+});
+const services = new ProjectsBundle({
+    host : 'https://gitlab.com',
+    token: '3Asw-ZvG25ekVAbzS8F6'
+});*/
 
 const io = require('socket.io')(server, {
     cors: {
@@ -30,8 +42,16 @@ server.listen(PORT, (err) => {
     console.log('Server started on port: ', PORT);
 });
 
+// mongodb
 async function start() {
+    
     await mongoose.connect(config.get("dbUrl"));
+
+    /*let usersApi = await api.Users.all();
+    api.Projects.all().then((projects) => {
+        console.log(projects);
+    });
+    console.log(services.Projects.all());*/
 
     app.post('/addUser', (req, res) => {
         const {newId, userName, vacationStatus} = req.body;

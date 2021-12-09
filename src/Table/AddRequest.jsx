@@ -2,12 +2,6 @@ import React, { useState } from 'react'
 import './Table.css'
 import Modal from '../Pages/Component/Modal'
 
-const formStyle = {
-    display: 'flex', 
-    marginBottom: '0.5rem',  
-    padding: '0' 
-}
-
 export default function AddRequest(props) {
     const [activeUserId, setActiveId] = useState(-1);
     const [unAvailableUsers, setUnAvailable] = useState([]);
@@ -55,7 +49,7 @@ export default function AddRequest(props) {
     }
 
     return (  
-        <form style={formStyle} onSubmit={handleSubmit}>
+        <form className="request" onSubmit={handleSubmit}>
             <select className="selectBlock" value={activeUserId} onChange={(event) => setActiveId(Number(event.target.value))}>
                 <option key={`user-null`} value={-1}>Не выбрано</option>
                 {props.users.map(user => (

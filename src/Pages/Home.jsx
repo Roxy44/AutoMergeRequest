@@ -130,31 +130,71 @@ class Request extends Component {
     render() {
         return (  
             <div className="container">
-                <h1 style={{textAlign: 'center', marginBottom: '2rem'}}>Система Автоматических Мердж - Реквестов</h1>
+                <div className="row">
+                    <div className="col-12">
+                        <h1 style={{textAlign: 'center', marginBottom: '2rem'}}>Система Автоматических Мердж - Реквестов</h1>
+                    </div>
+                </div> 
                 {
-                this.props.userRole === 0 ? 
-                    <div>
-                        <AddCommand addTeam={this.addTeam}/>
-                        <AddUserToCommand addToTeam={this.addToTeam} users={this.state.users} teams={this.state.teams}/>
-                        <UserManagment addUser={this.addUser} removeUser={this.removeUser}/>
-                        <Vacation setVacation={this.setVacation} users={this.state.users}/> 
-                        <Table users={this.state.users} teams={this.state.teams} selectedTable={this.selectedTable}/>
+                this.props.userRole === 0 ?
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-8">
+                                <div className="row">
+                                    <AddCommand addTeam={this.addTeam}/>
+                                </div>
+                                <div className="row">  
+                                    <AddUserToCommand addToTeam={this.addToTeam} users={this.state.users} teams={this.state.teams}/>
+                                </div>
+                                <div className="row">  
+                                        <UserManagment addUser={this.addUser} removeUser={this.removeUser}/>
+                                </div>
+                            </div>
+                            <div className="col-4">
+                                <Vacation setVacation={this.setVacation} users={this.state.users}/>
+                            </div>
+                        </div>
+                        <div className="row"> 
+                            <div className="col-12">
+                                <Table users={this.state.users} teams={this.state.teams} selectedTable={this.selectedTable}/>
+                            </div>
+                        </div>
                     </div>
                     : 
                     this.props.userRole === 1 ?
-                        <div>
-                            <AddUserToCommand addToTeam={this.addToTeam} users={this.state.users} teams={this.state.teams}/>
-                            <AddRequest addRequest={this.addRequest} users={this.state.users} table={this.state.table}/>
-                            <Table users={this.state.users} teams={this.state.teams} selectedTable={this.selectedTable}/>
+                    <div className="container">
+                        <div className="row"> 
+                            <div className="col-12">
+                                <AddUserToCommand addToTeam={this.addToTeam} users={this.state.users} teams={this.state.teams}/>
+                            </div>
                         </div>
-                        :
-                        this.state.users.length === 0 ?
-                            <div style={{color: 'black'}}>!Пользователи еще не добавлены в систему!</div>
-                            : 
-                            <div>
+                        <div className="row"> 
+                            <div className="col-12">
                                 <AddRequest addRequest={this.addRequest} users={this.state.users} table={this.state.table}/>
+                            </div>
+                        </div>
+                        <div className="row"> 
+                            <div className="col-12">
                                 <Table users={this.state.users} teams={this.state.teams} selectedTable={this.selectedTable}/>
                             </div>
+                        </div>        
+                    </div>
+                    :
+                    this.state.users.length === 0 ?
+                    <div style={{color: 'black'}}>!Пользователи еще не добавлены в систему!</div>
+                    : 
+                    <div className="container">
+                        <div className="row"> 
+                            <div className="col-12">
+                                <AddRequest addRequest={this.addRequest} users={this.state.users} table={this.state.table}/>
+                            </div>
+                        </div>
+                        <div className="row"> 
+                            <div className="col-12">
+                                <Table users={this.state.users} teams={this.state.teams} selectedTable={this.selectedTable}/>
+                            </div>
+                        </div>     
+                    </div>
                 }
             </div>
         );

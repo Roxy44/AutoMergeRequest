@@ -1,0 +1,30 @@
+/* AddCommand.jsx */
+.newTeam {
+    margin-bottom: 0.5rem;
+}
+
+.newTeam button {
+    word-break: break-word; 
+}
+
+.teamName {
+    min-width: 20%;
+    max-width: 100%;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* AddUserToCommand.jsx */
+.addUserToTeam {
+    margin-bottom: 0.5rem;
+}
+
+.addUserToTeam select {
+    min-width: 35.6%; 
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.addUserToTeam button {
+    word-break: break-word; 
+}

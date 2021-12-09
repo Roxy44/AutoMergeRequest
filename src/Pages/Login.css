@@ -1,11 +1,8 @@
 body {
     background: url(../Pictures/common.jpg);
-    height: 100%;
-    max-height: 1080px;
-    overflow: hidden;
 }
-.loginMenu {
-    width: 100%;
+.loginComponent {
+    width: 70%;
     height: 70%;
     position: fixed;
     display: flex;
@@ -14,7 +11,7 @@ body {
     justify-content: center; 
     overflow: auto;
 }
-.input {
+.loginMenu {
     width: 302.5px;
     height: 180px;
     position: relative;

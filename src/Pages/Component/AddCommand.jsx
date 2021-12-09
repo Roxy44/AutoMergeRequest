@@ -1,11 +1,6 @@
 import React, { useState } from 'react'
 import Modal from './Modal'
-
-const input = {
-    minWidth: "20%",
-    marginRight: "0.5rem",
-    marginBottom: "0.5rem"
-}
+import './Command.css'
 
 export default function AddTeam({addTeam}) {
 
@@ -33,13 +28,13 @@ export default function AddTeam({addTeam}) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div> 
-                <input style={input} type="text" placeholder="Введите название команды" value={team} required onChange={handleChange} />
+            <div className="newTeam"> 
+                <input className="teamName" type="text" placeholder="Введите название команды" value={team} required onChange={handleChange} />
                 <button onClick={handleClick}>Добавить</button>
-                <Modal active={modalActive} setActive={setModalActive}>
-                    <p>Команда <b>{content}</b> была создана!</p>
-                </Modal>
             </div>
+            <Modal active={modalActive} setActive={setModalActive}>
+                <p>Команда <b>{content}</b> была создана!</p>
+            </Modal>
         </form>
     )
 }
